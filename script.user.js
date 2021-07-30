@@ -2,7 +2,7 @@
 // @name Hide Problem Tags
 // @namespace http://tampermonkey.net/
 // @author Vishal Agrawal
-// @version 3.0
+// @version 4.0
 // @description hides all other problem tags other than problem rating / difficulty tag
 // @match https://codeforces.com/contest/*
 // @match https://codeforces.com/problemset/problem/*
@@ -153,6 +153,7 @@ $(document).ready(function () {
         {
             path_len--;
         }
+        let corner = path.includes("contest");
         let endpoint = path_len - 1;
         let count = 0;
         for (let index = path_len - 1; index >= 0; index--) {
@@ -161,6 +162,12 @@ $(document).ready(function () {
             {
                 if (count == 1)
                 {
+                    if (corner)
+                    {
+                        corner = 0;
+                        endpoint = index - 1;
+                        continue;
+                    }
                     cid = path.substring(index + 1, endpoint + 1);
                     break;
                 }
