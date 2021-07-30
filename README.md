@@ -5,3 +5,7 @@
 ### You will need a userscript manager like [Tamper Monkey](https://www.tampermonkey.net/) to use the script
 
 ### For the script to work proper ***switch off*** "show tags for unsolved problems" in the general setting on codeforces
+
+![](/images/hidden.png)
+
+![](/images/unhidden.png)
