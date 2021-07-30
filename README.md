@@ -1,1 +1,1 @@
-# tag-hider-codeforces-
+# Hide / Show Problem Tags Button for CodeForces
