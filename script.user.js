@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name Hide Problem Tags
 // @namespace http://tampermonkey.net/
+// @author Vishal Agrawal
 // @version 1.0
 // @description hides all other problem tags other than problem rating / difficulty tag
 // @match https://codeforces.com/contest/*
