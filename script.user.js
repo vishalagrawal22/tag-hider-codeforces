@@ -2,7 +2,7 @@
 // @name Hide Problem Tags
 // @namespace http://tampermonkey.net/
 // @author Vishal Agrawal
-// @version 1.1
+// @version 2.0
 // @description hides all other problem tags other than problem rating / difficulty tag
 // @match https://codeforces.com/contest/*
 // @match https://codeforces.com/problemset/*
@@ -39,7 +39,7 @@ $(document).ready(function () {
                         tag.parent().toggle();
                     }
                 });
-                if (current == 0) {
+                if (current == 1) {
                     $(tag_button).text("Hide Tags");
                 }
                 else {
