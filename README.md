@@ -1,4 +1,4 @@
-# Tag Hider for CodeForces
+## Tag Hider for CodeForces
 
 The extension adds a button to toggle on/off problem tags on codeforces
 
