@@ -12,8 +12,6 @@ For the script to work properly, please note that "show tags for unsolved proble
 
 ![](/images/spoiler_on.png)
 
-![](/images/spoiler_off.png)
-
 ![](/images/hidden.png)
 
 ![](/images/unhidden.png)
