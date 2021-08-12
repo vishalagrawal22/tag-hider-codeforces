@@ -2,7 +2,7 @@
 // @name Hide Problem Tags
 // @namespace http://tampermonkey.net/
 // @author Vishal Agrawal
-// @version 5.0
+// @version 6.0
 // @description hides all other problem tags other than problem rating / difficulty tag
 // @match https://codeforces.com/contest/*
 // @match https://codeforces.com/problemset/problem/*
@@ -42,13 +42,15 @@ $(document).ready(function () {
         function spoiler(special = 0)
         {
             let tag_div = $(".problem-difficulty");
-            if ((tag_div.css("background-color") === "rgb(128, 128, 128)" || special == 1) && special != -1)
+            if ((tag_div.attr("value") === "hidden" || special == 1) && special != -1)
             {
                 tag_div.css({"background-color": "rgb(240, 240, 240)", color: "rgb(0, 0, 0)"});
+                tag_div.attr("value", "visible");
             }
             else
             {
                 tag_div.css({"background-color": "rgb(128, 128, 128)", color: "rgb(128, 128, 128)"});
+                tag_div.attr("value", "hidden");
             }
         }
         function make_tag(tag, type)
@@ -74,6 +76,7 @@ $(document).ready(function () {
             {
                 tag_span.addClass("problem-difficulty-span");
                 tag_div.addClass("problem-difficulty");
+                tag_div.attr("value", "hidden");
                 tag_div.click(spoiler);
                 tag_div.css({"background-color": "rgb(128, 128, 128)", "color": "rgb(128, 128, 128)", "-webkit-user-select": "none",
                              "-khtml-user-select": "none", "-webkit-touch-callout": "none", "-moz-user-select": "none", "-o-user-select": "none",
