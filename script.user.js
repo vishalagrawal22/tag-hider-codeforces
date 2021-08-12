@@ -2,7 +2,7 @@
 // @name Hide Problem Tags
 // @namespace http://tampermonkey.net/
 // @author Vishal Agrawal
-// @version 4.0
+// @version 5.0
 // @description hides all other problem tags other than problem rating / difficulty tag
 // @match https://codeforces.com/contest/*
 // @match https://codeforces.com/problemset/problem/*
@@ -39,6 +39,18 @@ $(document).ready(function () {
         let tag_body = $("<div></div>");
         tag_body.css({"margin-bottom": "1em"});
         let tag_container = $("<div></div>").css({ "padding": "0.5em", "display": "inline-block" });
+        function spoiler(special = 0)
+        {
+            let tag_div = $(".problem-difficulty");
+            if ((tag_div.css("background-color") === "rgb(128, 128, 128)" || special == 1) && special != -1)
+            {
+                tag_div.css({"background-color": "rgb(240, 240, 240)", color: "rgb(0, 0, 0)"});
+            }
+            else
+            {
+                tag_div.css({"background-color": "rgb(128, 128, 128)", color: "rgb(128, 128, 128)"});
+            }
+        }
         function make_tag(tag, type)
         {
             let tag_div = $("<div></div>");
@@ -51,15 +63,24 @@ $(document).ready(function () {
             let tag_span = $("<span></span>");
             tag_span.addClass("tag-box");
             tag_span.css({ "font-size": "1.2rem", "display": "inline" });
-            tag_span.attr("title", "Dfs and similar");
+            tag_span.attr("title", `${tag}`);
             tag_span.text(`${tag}`);
-            tag_div.append(tag_span);
-            tag_container.append(tag_div);
             if (type)
             {
                 tag_div.hide();
                 tag_span.hide();
             }
+            else
+            {
+                tag_span.addClass("problem-difficulty-span");
+                tag_div.addClass("problem-difficulty");
+                tag_div.click(spoiler);
+                tag_div.css({"background-color": "rgb(128, 128, 128)", "color": "rgb(128, 128, 128)", "-webkit-user-select": "none",
+                             "-khtml-user-select": "none", "-webkit-touch-callout": "none", "-moz-user-select": "none", "-o-user-select": "none",
+                             "user-select": "none"});
+            }
+            tag_div.append(tag_span);
+            tag_container.append(tag_div);
         }
         if (rating == undefined)
         {
@@ -93,9 +114,11 @@ $(document).ready(function () {
                 }
             });
             if (current == 1) {
+                spoiler(1);
                 $(tag_button).text("Hide Tags");
             }
             else {
+                spoiler(-1);
                 $(tag_button).text("Show Tags");
             }
         };
